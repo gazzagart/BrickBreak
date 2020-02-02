@@ -5,7 +5,8 @@
         "bitset": "cpp",
         "ios": "cpp",
         "locale": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "iostream": "cpp"
     },
     "terminal.integrated.shell.windows": "cmd.exe"
 }

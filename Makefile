@@ -5,7 +5,7 @@ ASSETS := assets
 
 BIN		:= bin
 #* There are many ways to get this file to look for your files. Here we are telling the makefile to look in these folders from the root.
-SRC		:= src src/Utils src/graphics
+SRC		:= src src/Utils src/graphics src/shapes
 INCLUDE	:= include
 LIB		:= lib
 
