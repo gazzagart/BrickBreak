@@ -5,6 +5,7 @@
 #include "color.hpp"
 
 class Vec2D; //Forward declaration
+class Line2D; //Forward declaration
 struct SDL_Window; //Forward declaration
 struct SDL_Surface; //Forward declaration
 
@@ -23,6 +24,7 @@ public:
     //Draw methods go here
     void Draw(int x, int y, const Color& color);
     void Draw(const Vec2D& point, const Color& color);
+    void Draw(const Line2D& line, const Color& color);
 private:
 
     Screen(const Screen& screen);//* No one can do copy constructor!
