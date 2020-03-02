@@ -36,8 +36,7 @@
 
 CXX		  := g++
 CXX_FLAGS := -Wall -Wextra -std=c++17 -ggdb
-LDFLAGSWIN := -I C:/SDL2/i686-w64-mingw32/include -L C:/SDL2/i686-w64-mingw32/lib
-SDL2 := -lmingw32 -lSDL2 -lSDL2main -lwinmm -mwindows
+LDFLAGSWIN := -Wfatal-errors -I"C:\SDL2\i686-w64-mingw32\include" -L"C:\SDL2\i686-w64-mingw32\lib" -lmingw32 -lSDL2main -lSDL2
 
 BIN		:= bin
 SRC		:= $(wildcard src/*.cpp) $(wildcard src/**/*.cpp)
@@ -47,7 +46,6 @@ LIB		:= lib
 LIBRARIES	:=
 EXECUTABLE	:= main
 
-
 all: $(BIN)\$(EXECUTABLE)
 
 run: clean all
@@ -56,7 +54,7 @@ run: clean all
 	.\$(BIN)\$(EXECUTABLE)
 
 $(BIN)\$(EXECUTABLE): $(SRC)
-	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) -L$(LIB) $^  -o $@ $(LIBRARIES) $(LDFLAGSWIN) $(SDL2)
-
+	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) -L$(LIB)  $^ $(LDFLAGSWIN) -o $@
 clean:
 	del $(BIN)\*
+	rmdir $(BIN)\assets

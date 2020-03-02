@@ -19,7 +19,8 @@ bool DrawSpinningLine(Screen& screen);
 
 using namespace std;
 
-int main (int argc, const char * argv[])
+// int main (int argc, const char * argv[]) // MAC DEV
+int main( int argc, char *argv[] ) // WIN DEV
 {
     Screen theScreen;
 
