@@ -8,7 +8,7 @@ public:
     Line2D(float x0, float y0, float x1, float y1);
     Line2D(const Vec2D& p0, const Vec2D& p1);
 
-    inline const Vec2D& GetP0() const {return mP0;}
+    inline const Vec2D GetP0() const {return mP0;}
     inline const Vec2D GetP1() const {return mP1;}
 
     inline void SetP0(const Vec2D& p0) {mP0 = p0;}

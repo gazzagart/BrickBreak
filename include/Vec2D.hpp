@@ -52,6 +52,7 @@ public:
     Vec2D ProjectionOnto(const Vec2D& vec2) const;
 
     float AngleBetween(const Vec2D& vec2) const;
+    float AngleBetweenDeg(const Vec2D& vec2) const;
     Vec2D Reflect(const Vec2D& normal) const;
 
     void Rotate(float angle, const Vec2D& aroundPoint);

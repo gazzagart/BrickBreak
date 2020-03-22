@@ -4,6 +4,7 @@
 #include "color.hpp"
 #include "Screen.hpp"
 #include "Line2D.hpp"
+#include "Star2D.hpp"
 
 const int SCREEN_WIDTH = 224;
 const int SCREEN_HEIGHT = 288;
@@ -25,6 +26,7 @@ int main( int argc, char *argv[] ) // WIN DEV
     Screen theScreen;
 
     theScreen.Init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFICATION);
+    Star2D star = Star2D(theScreen);
     //Where the line starts, Where the line ends!!!
     // Draw between those points
     // 0,0 top left of screen
@@ -32,22 +34,24 @@ int main( int argc, char *argv[] ) // WIN DEV
     // theScreen.Draw(line, Color::White());
     //theScreen.Draw(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, Color::Yellow());
     // theScreen.SwapScreens();
+    star.drawStar(theScreen);
 
     SDL_Event sdlEvent;
     bool running = true;
 
     while (running)
     {
-        running = DrawSpinningLine(theScreen);
-        // while(SDL_PollEvent(&sdlEvent))
-        // {
-        //     switch(sdlEvent.type)
-        //     {
-        //         case SDL_QUIT:
-        //             running = false;
-        //             break;
-        //     }
-        // }
+        // star.rotateStar(theScreen); //!Uncomment for super fast spinning star.
+        while(SDL_PollEvent(&sdlEvent))
+        {
+            switch(sdlEvent.type)
+            {
+                case SDL_QUIT:
+                    running = false;
+                    break;
+            }
+        star.rotateStar(theScreen);
+        }
     }
 
     return 0;
@@ -84,7 +88,6 @@ bool DrawSpinningLine(Screen& screen)
         }
         Line2D line = {Vec2D(x,y), Vec2D(xOpp,yOpp)};
         screen.Draw(line, Color::White());
-        //theScreen.Draw(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, Color::Yellow());
         screen.SwapScreens();
     }
     return false;

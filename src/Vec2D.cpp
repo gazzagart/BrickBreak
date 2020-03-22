@@ -2,6 +2,7 @@
 #include "Utils.hpp"
 
 #include <cassert>
+#define _USE_MATH_DEFINES
 #include <cmath>
 
 const Vec2D Vec2D::Zero;
@@ -144,6 +145,12 @@ float Vec2D::AngleBetween(const Vec2D& vec2) const
     //* which gives us cosine of the angle,
     //* finally we take the inverse cosine to get the actual angle
     return acosf(GetUnitVec().Dot(vec2.GetUnitVec()));
+}
+
+float Vec2D::AngleBetweenDeg(const Vec2D& vec2) const
+{
+    float rads = AngleBetween(vec2);
+    return rads * 180/M_PI;
 }
 
 Vec2D Vec2D::Reflect(const Vec2D& normal) const
