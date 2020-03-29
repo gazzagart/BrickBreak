@@ -5,16 +5,13 @@
 #include "Screen.hpp"
 #include "Line2D.hpp"
 #include "Star2D.hpp"
+#include "Triangle.hpp"
+#include "AARectangle.hpp"
+#include "Circle.hpp"
 
 const int SCREEN_WIDTH = 224;
 const int SCREEN_HEIGHT = 288;
 const int MAGNIFICATION = 3;
-
-/*
-1. Create a program that will continually spin a line segment counter clock-wise
-2. Create a class that represents a star shape that can be drawn to the screen
-3. Have your star rotate around its center point continually counter clock-wise
-*/
 
 bool DrawSpinningLine(Screen& screen);
 
@@ -26,7 +23,7 @@ int main( int argc, char *argv[] ) // WIN DEV
     Screen theScreen;
 
     theScreen.Init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFICATION);
-    Star2D star = Star2D(theScreen);
+    // Star2D star = Star2D(theScreen);
     //Where the line starts, Where the line ends!!!
     // Draw between those points
     // 0,0 top left of screen
@@ -34,7 +31,16 @@ int main( int argc, char *argv[] ) // WIN DEV
     // theScreen.Draw(line, Color::White());
     //theScreen.Draw(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, Color::Yellow());
     // theScreen.SwapScreens();
-    star.drawStar(theScreen);
+    // star.drawStar(theScreen);
+
+    // Universal Syntax
+    Triangle triangle = {Vec2D(60,10), Vec2D(10,110), Vec2D(110,110)};
+    AARectangle rect = {Vec2D(SCREEN_WIDTH/2 -25, SCREEN_HEIGHT/2 -25), 50, 50};
+    Circle circle = {Vec2D(SCREEN_WIDTH/2 + 50, SCREEN_HEIGHT/2 + 50), 50};
+    theScreen.Draw(triangle, Color::Red());
+    theScreen.Draw(rect, Color::Blue());
+    theScreen.Draw(circle, Color::Pink());
+    theScreen.SwapScreens();
 
     SDL_Event sdlEvent;
     bool running = true;
@@ -50,7 +56,7 @@ int main( int argc, char *argv[] ) // WIN DEV
                     running = false;
                     break;
             }
-        star.rotateStar(theScreen);
+        // star.rotateStar(theScreen);//!Uncomment for super Slow spinning star.
         }
     }
 
