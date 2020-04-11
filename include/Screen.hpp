@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include "ScreenBuffer.hpp"
 #include "color.hpp"
+#include <vector>
 
 class Vec2D; //Forward declaration
 class Line2D; //Forward declaration
@@ -28,14 +29,15 @@ public:
     void Draw(int x, int y, const Color& color);
     void Draw(const Vec2D& point, const Color& color);
     void Draw(const Line2D& line, const Color& color);
-    void Draw(const Triangle& triangle, const Color& color);
-    void Draw(const AARectangle& rect, const Color& color);
-    void Draw(const Circle& circle, const Color& color);
+    void Draw(const Triangle& triangle, const Color& color, bool fill = false, const Color& fillColor = Color::White());
+    void Draw(const AARectangle& rect, const Color& color, bool fill = false, const Color& fillColor = Color::White());
+    void Draw(const Circle& circle, const Color& color, bool fill = false, const Color& fillColor = Color::White());
 private:
 
     Screen(const Screen& screen);//* No one can do copy constructor!
     Screen& operator=(const Screen& screen);//*Can't copy the screen around
     void ClearScreen();
+    void FillPoly(const std::vector<Vec2D>& points, const Color& color);
 
     uint32_t mWidth;
     uint32_t mHeight;

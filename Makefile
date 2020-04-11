@@ -56,5 +56,5 @@ run: clean all
 $(BIN)\$(EXECUTABLE): $(SRC)
 	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) -L$(LIB)  $^ $(LDFLAGSWIN) -o $@
 clean:
-	del /q $(BIN)\*
-	rmdir $(BIN)\assets
+	if exist  $(BIN)\ del /q $(BIN)\*
+	if exist  $(BIN)\assets\ rmdir $(BIN)\assets

@@ -99,3 +99,21 @@ uint8_t Color::GetAlpha() const
     SDL_GetRGBA(mColor, mFormat, &r, &g, &b, &a); //Pass by reference -> passing the memory address for these
     return a;
 }
+
+Color Color::Evaluate1MinusSourceAlpha(const Color& source, const Color& destination)
+{
+    //We follow the next equation here
+    // SourceRGB * sourceAlpha + DestinationRGB * (1 - sourceAlpha)
+    uint8_t alpha = source.GetAlpha();
+
+    float sourceAlpha = float(alpha)/255.0f;
+    float destAlpha = 1.0 - sourceAlpha;
+
+    Color outColor;
+    outColor.SetAlpha(255);
+    outColor.SetRed(float(source.GetRed()) * sourceAlpha + destination.GetRed() * destAlpha);
+    outColor.SetGreen(float(source.GetGreen()) * sourceAlpha + destination.GetGreen() * destAlpha);
+    outColor.SetBlue(float(source.GetBlue()) * sourceAlpha + destination.GetBlue() * destAlpha);
+
+    return outColor;
+}
